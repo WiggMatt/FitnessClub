@@ -9,6 +9,7 @@ class CustomUser(AbstractUser):
         ('F', 'Женский'),
         ('O', 'Другой'),
     ]
+    username = models.EmailField("Электронная почта", max_length=100, unique=True)
 
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
 

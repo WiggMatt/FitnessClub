@@ -7,7 +7,13 @@ from .models import ClientProfile
 class RegistrationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = ClientProfile
-        fields = ['bio', 'birth_date', 'phone_number', 'address', 'password1', 'password2']
+        fields = ['username', 'bio', 'gender', 'birth_date', 'phone_number', 'address', 'password1', 'password2']
+        widgets = {
+            'birth_date': forms.DateInput(attrs={
+                'class': 'form-control',
+                'type': 'date',
+            }),
+        }
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -20,12 +26,12 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label="Имя пользователя",
         max_length=100,
-        widget=forms.CharField,
+        widget=forms.TextInput(attrs={'class': 'form-control'}),  # Пример атрибутов виджета
     )
     password = forms.CharField(
         label="Пароль",
         strip=False,
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),  # Пример атрибутов виджета
     )
 
     error_messages = {

@@ -14,7 +14,7 @@ def registration(request):
             return redirect('/')
     else:
         form = RegistrationForm()
-    return render(request, '#', {'form': form})
+    return render(request, 'main_app/registration.html', {'form': form})
 
 
 def logout_view(request):
@@ -34,8 +34,12 @@ def user_login(request):
                 return redirect(request.GET.get('next', '/'))
     else:
         form = LoginForm()
-    return render(request, '#', {'form': form})
+    return render(request, 'main_app/login.html', {'form': form})
 
 
 def main_view(request):
-    return render(request, '#')
+    return render(request, 'main_app/main.html')
+
+
+def abonement_view(request):
+    return render(request, 'main_app/abonements.html')
