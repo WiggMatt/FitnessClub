@@ -19,8 +19,12 @@ from django.urls import path, include
 
 from main_app.views import main_view
 
+from main_app.views import *
+
 urlpatterns = [
     path('', main_view, name='main_page'),
     path('', include('main_app.urls')),
     path('admin/', admin.site.urls),
+    path('', main_page, name='MainPage'),
+    path('abonements', abonements_page, name='AbonementsPage' )
 ]
